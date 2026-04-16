@@ -1,0 +1,125 @@
+:root {
+    --blue-primary: #007bff;
+    --blue-light: #eef6ff;
+    --bg-body: #f4f7f9;
+    --text-main: #2d3436;
+    --white: #ffffff;
+    --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.05);
+    --radius: 12px;
+    --danger: #ff4757;
+    --border-color: #edf2f7;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-body);
+    margin: 0; padding: 10px;
+    color: var(--text-main);
+}
+
+.main-layout {
+    display: flex; gap: 20px; max-width: 1600px; margin: 0 auto; height: calc(100vh - 100px);
+}
+
+/* САЙДБАР СЛЕВА */
+.tabs-sidebar {
+    width: 80px; display: flex; flex-direction: column; gap: 15px; align-items: center; padding-top: 10px;
+}
+
+#tabs-list {
+    display: flex; flex-direction: column; gap: 12px; width: 100%; align-items: center;
+}
+
+.tab-item {
+    width: 60px; height: 60px; background: var(--white); border-radius: 15px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: var(--shadow-soft); font-size: 10px; transition: 0.2s;
+    position: relative; border: 2px solid transparent; text-align: center;
+    color: #636e72;
+}
+
+.tab-item i { font-size: 20px; margin-bottom: 3px; }
+.tab-item.active { background: var(--blue-primary); color: white; transform: scale(1.05); }
+.tab-item.active i, .tab-item.active span { color: white; }
+
+.add-tab-btn {
+    width: 55px; height: 55px; border: 2px dashed #cbd5e0; background: none;
+    border-radius: 15px; font-size: 24px; color: #cbd5e0; cursor: pointer;
+    transition: 0.2s;
+}
+
+/* ЦЕНТР (ОСНОВНАЯ ДОСКА) */
+.board-section { flex: 1; display: flex; flex-direction: column; align-items: center; }
+.board-container {
+    position: relative; width: 100%; max-width: 70vh; background: var(--white);
+    padding: 15px; border-radius: 20px; box-shadow: var(--shadow-soft);
+}
+#myBoard { width: 100% !important; height: 100% !important; min-height: 400px; }
+
+#status-msg { margin-bottom: 10px; font-weight: 800; font-size: 14px; text-transform: uppercase; color: var(--text-main); }
+
+.board-controls { display: flex; gap: 10px; width: 100%; max-width: 70vh; margin-top: 15px; }
+
+/* ПРАВАЯ ПАНЕЛЬ */
+.info-panel {
+    width: 350px; background: var(--white); padding: 20px;
+    border-radius: 20px; box-shadow: var(--shadow-soft); display: flex; flex-direction: column; gap: 15px;
+}
+.chat-area {
+    background: #f8f9fa; border-radius: var(--radius); padding: 12px;
+    flex-grow: 1; overflow-y: auto; border: 1px solid var(--border-color);
+    min-height: 200px;
+}
+
+/* ИСТОРИЯ ХОДОВ */
+.pgn-container { display: flex; flex-wrap: wrap; gap: 8px 12px; padding: 12px; }
+.move-row { display: inline-flex; align-items: center; background: #fff; padding: 4px 10px; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 5px; }
+.move-number { font-weight: 700; color: #94a3b8; margin-right: 8px; font-size: 0.85rem; }
+.pgn-move { cursor: pointer; font-size: 14px; color: #1e293b; padding: 2px 6px; border-radius: 4px; }
+
+/* МОДАЛКИ ОБЩЕЕ */
+.modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+    display: none; align-items: center; justify-content: center; z-index: 2000;
+}
+
+/* РЕДАКТОР ПОЗИЦИИ (ГЛАВНЫЙ ФИКС) */
+.editor-modal {
+    background: white; padding: 25px; border-radius: 20px;
+    box-shadow: var(--shadow-soft); display: flex; flex-direction: column;
+    align-items: center; width: auto; max-width: 95vw;
+}
+
+/* Фикс для ChessradBoard в редакторе */
+#board-editor {
+    width: 400px !important; /* Фиксируем ширину для корректного расчета */
+    margin: 10px 0;
+}
+
+/* Стили для панелей фигур, создаваемых JS */
+.cr-spare-pieces-top, .cr-spare-pieces-bottom {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 5px;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 5px;
+}
+
+.editor-tools {
+    display: flex; gap: 8px; width: 100%; justify-content: center; margin-top: 15px;
+}
+
+/* КНОПКИ */
+.btn-primary-sm { background: var(--blue-primary); color: white; border: none; padding: 12px 20px; border-radius: 10px; font-weight: 700; cursor: pointer; }
+.btn-secondary { background: var(--blue-light); color: var(--blue-primary); border: none; padding: 10px 15px; border-radius: 10px; font-weight: 600; cursor: pointer; }
+.btn-danger-light { background: #fff0f1; color: var(--danger); border: none; padding: 10px 15px; border-radius: 10px; font-weight: 600; cursor: pointer; }
+.btn-logout { background: transparent; color: var(--danger); border: 2px solid #fff0f1; padding: 10px; border-radius: 12px; font-weight: 700; cursor: pointer; margin-top: auto; }
+
+/* СТИЛИ ДВИЖКА */
+.cr-square.light { background-color: #f0d9b5; }
+.cr-square.dark { background-color: #b58863; }
+.cr-piece { cursor: pointer; }
